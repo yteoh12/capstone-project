@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Capstone Project Student Guide</title>
+<style>
+:root{--bg:#faf7f4;--card:#fff;--ink:#1f1b18;--mute:#6f655d;--line:#e6ddd5;--acc:#c0561b;--ok:#2e7d4f;--okbg:#e5f4ea;--warnbg:#fff4c9;--bad:#c62828;--blue:#2563a8}
+@media (prefers-color-scheme:dark){:root{--bg:#171412;--card:#221e1b;--ink:#f2ebe5;--mute:#a79b91;--line:#3a332e;--acc:#ee8a52;--ok:#6fcf97;--okbg:#1d3326;--warnbg:#3a3416;--bad:#ff8a80;--blue:#7fb2ee}}
+*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:64px}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+nav{position:sticky;top:0;z-index:5;background:var(--card);border-bottom:1px solid var(--line);display:flex;gap:4px;overflow-x:auto;padding:8px 12px}
+nav a{white-space:nowrap;color:var(--ink);text-decoration:none;padding:6px 12px;border-radius:99px;font-size:14px}nav a:hover{background:var(--line)}
+main{max-width:960px;margin:0 auto;padding:0 16px 60px}
+header{padding:36px 0 10px}h1{font-size:34px;line-height:1.15;margin:0 0 8px;letter-spacing:-.01em}
+h2{font-size:24px;margin:44px 0 6px}h3{font-size:17px;margin:0 0 4px}
+.sub,.d{color:var(--mute)}.d{font-size:14px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 18px;margin:12px 0}
+.msg{border-left:5px solid var(--acc)}.msg p{margin:.6em 0}
+.cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:12px}.cols .card{margin:0}
+.dl{display:flex;gap:12px;flex-wrap:wrap}.dl .card{flex:1;min-width:220px;margin:0}
+.big{font-size:28px;font-weight:700;color:var(--acc)}
+.warn{background:var(--warnbg);border-radius:8px;padding:2px 6px;font-weight:600}.zero{color:var(--bad);font-weight:700}
+a{color:var(--blue)}.btn{display:inline-block;background:var(--acc);color:#fff!important;text-decoration:none;font-weight:600;border:0;border-radius:8px;padding:8px 14px;cursor:pointer;font:inherit;font-size:14px}
+.btn.g{background:none;color:var(--ink)!important;border:1px solid var(--line)}
+.chk{display:flex;gap:12px;align-items:flex-start;padding:12px 0;border-top:1px solid var(--line)}.chk:first-child{border-top:0}
+.chk input{width:20px;height:20px;margin-top:4px;accent-color:var(--ok)}.chk.done .t{text-decoration:line-through;color:var(--mute)}
+.bar{height:8px;background:var(--line);border-radius:99px;overflow:hidden;margin:8px 0}.bar i{display:block;height:100%;background:var(--ok)}
+.tools{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:10px}.tools a{display:block;text-decoration:none;color:var(--ink);background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px}.tools a:hover{border-color:var(--acc)}.tools b{display:block}.tools span{font-size:13px;color:var(--mute)}
+ol.s{padding-left:20px}ol.s li{margin:6px 0}
+.g-wrap{overflow-x:auto}.gantt{display:grid;grid-template-columns:200px repeat(14,minmax(34px,1fr));min-width:720px;font-size:13px;align-items:center}
+.gantt .h{color:var(--mute);text-align:center;padding:4px 0;border-bottom:1px solid var(--line)}.gantt .n{padding:6px 8px 6px 0;border-bottom:1px solid var(--line)}
+.gantt .c{border-bottom:1px solid var(--line);height:100%;min-height:30px;position:relative}.gantt .b{position:absolute;left:1px;right:1px;top:7px;bottom:7px;background:var(--acc);border-radius:5px}.gantt .b.m{background:var(--ok)}
+.step{counter-increment:st;position:relative;padding-left:46px}.step:before{content:counter(st);position:absolute;left:0;top:0;width:32px;height:32px;border-radius:50%;background:var(--acc);color:#fff;display:grid;place-items:center;font-weight:700}
+.steps{counter-reset:st}.steps .step{margin:16px 0}
+table{border-collapse:collapse;width:100%;font-size:13px}th,td{border:1px solid var(--line);padding:0;vertical-align:top}th{background:var(--line);padding:6px 8px;text-align:left;white-space:nowrap}
+td textarea{width:100%;min-width:140px;min-height:64px;border:0;background:var(--card);color:var(--ink);font:inherit;font-size:13px;padding:6px 8px;resize:vertical}
+details{border-top:1px solid var(--line);padding:10px 0}details:first-child{border-top:0}summary{cursor:pointer;font-weight:600}
+.wtabs{display:flex;gap:6px;flex-wrap:wrap;margin:12px 0}.wtabs button{font:inherit;font-size:14px;cursor:pointer;color:var(--ink);background:var(--card);border:1px solid var(--line);border-radius:99px;padding:6px 14px}.wtabs button.on{background:var(--acc);color:#fff;border-color:var(--acc);font-weight:600}
+.sec{border-top:1px solid var(--line);padding:12px 0}.sec:first-child{border-top:0}.sec h4{margin:0 0 2px;font-size:16px}
+.tpl{position:relative;background:var(--bg);border-left:4px solid var(--blue);border-radius:8px;padding:8px 38px 8px 12px;margin:8px 0;font-size:14px;font-style:italic}.tpl button{position:absolute;right:6px;top:6px;border:0;background:none;cursor:pointer;font-size:15px}
+.two{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:12px}.two ul{margin:6px 0;padding-left:18px}.bad li::marker{color:var(--bad)}
+.ex{background:var(--okbg);border-radius:10px;padding:10px 14px;font-size:14px;margin:10px 0}
+.eth{border-left:5px solid var(--blue)}.q{display:flex;gap:10px;align-items:flex-start;padding:7px 0}.q input{width:20px;height:20px;margin-top:3px;accent-color:var(--acc)}
+.res{border-radius:10px;padding:12px 14px;margin-top:10px;font-weight:600}.res.y{background:var(--warnbg)}.res.n{background:var(--okbg)}
+ul.qs{margin:4px 0;padding-left:20px;font-size:14px;color:var(--mute)}ul.qs li{margin:3px 0}
+pre.toc{background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:12px 14px;font:13px/1.55 ui-monospace,Menlo,Consolas,monospace;white-space:pre-wrap;max-height:420px;overflow:auto}
+footer{color:var(--mute);font-size:13px;margin-top:50px;text-align:center}
+</style>
+</head>
+<body>
+<nav><a href="#msg">Latest message</a><a href="#actions">Action items</a><a href="#toc">Table of contents</a><a href="#roadmap">CP1 roadmap</a><a href="#write">Write each chapter</a><a href="#ethics">Ethics</a><a href="#gantt">Gantt chart</a><a href="#lit">Literature</a><a href="#synth">Synthesis table</a><a href="#log">Logbook</a><a href="#faq">FAQ</a></nav>
+<main>
+<header><h1>Capstone Project 1: Student Guide</h1><div class="sub">Everything you need to plan, research and submit your proposal on time.</div>
+<div class="dl" style="margin-top:18px">
+<div class="card"><div class="d">Week 5 · Supervision Agreement Form</div><div class="big">30 Oct 2026</div><div class="d">Upload the SAF with your supervisor’s signature to eLearn.</div></div>
+<div class="card"><div class="d">Week 14 · Proposal (PS) and Logbook (LG)</div><div class="big">8 Jan 2027</div><div class="d">Upload both to eLearn. <span class="zero">Without submission or late submission = ZERO.</span></div></div>
+<div class="card"><div class="d">Countdown to final submission</div><div class="big" id="cd">…</div><div class="d">Meet your supervisor regularly and update your logbook.</div></div></div></header>
+
+<h2 id="msg">Latest message from your supervisor</h2>
+<div class="card msg">
+<p>Let’s proceed to the next phase of your capstone project. Below are the tasks, <span class="warn">due before 7 Nov 2026</span>:</p>
+<p><b>1. Develop a Gantt chart</b> to outline the timeline and milestones of your project. This will help you manage your time effectively and track progress. Use Microsoft Excel, Google Sheets or any online platform. See the <a href="#gantt">Gantt guide</a>.</p>
+<p><b>2. Develop a Table of Contents</b> that outlines the overall structure of your research proposal, for example Chapter 1 Introduction, 1.1 Problem Statement, 1.2 Objectives, etc. See the <a href="#toc">Table of Contents guide</a>.</p>
+<details><summary class="d">Earlier message (literature review tasks)</summary><p class="d">Dear Students, I believe you have attended the workshop on literature review. The tasks were: develop a Gantt chart, collect relevant literature, and do the literature review and synthesis in a table. Please share your progress during the next meeting.</p></details></div>
+
+<h2 id="actions">Action items</h2>
+<p class="sub">Tick each task when it is done. Your ticks are saved in this browser.</p>
+<div class="card"><div class="d" id="pt"></div><div class="bar"><i id="pb" style="width:0"></i></div><h3 style="margin-top:12px">Due before 7 Nov 2026 <span class="d" id="dd"></span></h3><div id="al"></div><h3 style="margin-top:12px">Earlier tasks</h3><div id="al2"></div></div>
+
+<h2 id="roadmap">CP1 roadmap: what your proposal must contain</h2>
+<p class="sub">The proposal is built in chapters. Work on them in this order and share each draft with your supervisor.</p>
+<div class="cols">
+<div class="card"><h3>Chapter 1 · Introduction</h3><div class="d">Background, problem statement, objectives, scope and significance. Make sure every objective can be measured and later answered by your methodology.</div></div>
+<div class="card"><h3>Chapter 2 · Literature review</h3><div class="d">Analyse, do not just list, existing work. Compare approaches and end with a clear research gap that justifies your project.</div></div>
+<div class="card"><h3>Chapter 3 · Methodology</h3><div class="d">Research design, tools and technologies, data, and the steps you will follow. Justify each choice and link it to your objectives.</div></div>
+<div class="card"><h3>Chapter 4 · Work plan</h3><div class="d">Gantt chart with tasks, dependencies and milestones, plus the risks and how you will handle them.</div></div>
+<div class="card"><h3>Abstract, references, quality</h3><div class="d">A short abstract of the whole proposal, consistent referencing (training on 23 Oct helps), good structure and proofreading.</div></div>
+<div class="card"><h3>Logbook</h3><div class="d">Weekly entries of meetings, work done, problems and critical reflection, signed by your supervisor. Submitted with the proposal.</div></div></div>
+<p class="d">Marks follow the official CP1 rubric. Milestones show your progress, but the quality of the work decides the marks.</p>
+
+<h2 id="toc">Develop your Table of Contents</h2>
+<p class="sub">Your table of contents is the outline of your proposal. Agree it with your supervisor first, because it shows whether you have thought through the whole project. Due before 7 Nov 2026.</p>
+<div class="card"><h3>How to do it</h3><ol class="s"><li>Start from the sample below and keep only the sections that fit your project.</li><li>Rename the headings for your own topic (for example, replace [Topic] with your topic).</li><li>Add sections you need, such as a use case diagram, a survey, or AI model sections.</li><li>Use two or three levels of numbering (Chapter, 1.1, 1.1.1) and keep the numbering consistent.</li><li>In Word or Google Docs, use Heading styles so the table of contents and page numbers can be generated automatically later.</li><li>Check the flow: problem, then objectives, then literature and gap, then methods, then work plan.</li><li>Show it to your supervisor and update it when the structure changes.</li></ol></div>
+<div class="card"><h3>Sample table of contents</h3><div class="d">Adapt it. Delete the sections that do not apply (for example, the AI model sections if your project has no AI model).</div><pre class="toc" id="tocp"></pre><p><button class="btn" id="tcp">📋 Copy</button> <button class="btn g" id="tdl">⬇ Download as text</button></p></div>
+<div class="card"><h3>Check before you submit it</h3><div class="d">Each objective in 1.3 has a matching method in Chapter 3. Each research gap in 2.7 is linked to your project. The work plan in Chapter 4 covers CP1 and CP2. Ethics approval is planned if you will collect data from people. Section names are specific to your project, not copied word for word.</div></div>
+
+<h2 id="write">Write your proposal chapter by chapter</h2>
+<p class="sub">Choose a chapter below. Each guide tells you what to write, gives sentence templates you can adapt, lists steps and common mistakes, and ends with a self-check. Ask your supervisor for the required length, format and referencing style.</p>
+<div class="wtabs" id="wt"></div><div class="card" id="wp"></div>
+<div class="card"><h3>Proposal skeleton</h3><div class="d">Download a text outline of the whole proposal with a prompt under every heading, then paste it into Word or Google Docs and fill it in.</div><p><button class="btn" id="sk">⬇ Download proposal skeleton</button></p></div>
+
+<h2 id="ethics">Ethics application (required if you collect data from people)</h2>
+<div class="card eth"><p style="margin-top:0">If your project collects data from <b>human subjects</b> (surveys, interviews, focus groups, usability tests, observation, experiments, or any data that identifies people), you must obtain <b>ethics approval before you collect any data</b>. Data collected before approval cannot be used. Use your university’s own ethics forms and procedure; ask your supervisor or coordinator which committee to submit to and the deadlines.</p></div>
+<div class="card"><h3>Step 1. Do I need ethics approval?</h3><div class="d">Tick everything that applies to your project.</div><div id="eq"></div><div class="res" id="er"></div></div>
+<div class="card"><h3>Step 2. Ethical principles to build into your design</h3><div class="two">
+<div><b>Voluntary participation</b><div class="d">No pressure. People may refuse or withdraw at any time without penalty.</div></div>
+<div><b>Informed consent</b><div class="d">Participants understand the purpose, tasks, time, risks and data use before agreeing.</div></div>
+<div><b>Minimise harm</b><div class="d">Avoid physical, emotional, social or reputational harm. Take extra care with sensitive topics.</div></div>
+<div><b>Confidentiality and anonymity</b><div class="d">Collect only the personal data you need. Remove or protect names and identifiers.</div></div>
+<div><b>Data protection</b><div class="d">Store data securely, limit access, and delete it when no longer needed. Check the personal data protection law that applies to you (in Malaysia, the PDPA 2010).</div></div>
+<div><b>Honesty and fairness</b><div class="d">Do not mislead participants. Be careful with students, minors or other vulnerable groups, and with people who report to you or your supervisor.</div></div></div></div>
+<div class="card"><h3>Step 3. Prepare your application</h3><ol class="s"><li>Discuss with your supervisor early, ideally while writing Chapter 3.</li><li>Fix the exact details: who the participants are, how many, how you recruit them, what they do and for how long.</li><li>Write the instruments (survey questions, interview guide, test tasks).</li><li>Prepare the Participant Information Sheet and Consent Form (templates below).</li><li>Write how you will store, protect and delete the data.</li><li>Get your supervisor’s review and signature.</li><li>Submit to the ethics committee before the deadline and respond quickly to any comments.</li><li>Begin data collection only after you receive written approval, and keep the approval letter and signed forms.</li></ol></div>
+<div class="card"><h3>What the application usually asks for</h3><div class="d">Names and details may differ between universities. Check your own form.</div>
+<div class="sec"><h4>Project summary</h4><div class="d">Title, researcher, supervisor, aim, and why human participants are needed.</div><div class="tpl">This project aims to [aim]. Data will be collected from [number] [participants] using [method] because [reason it cannot be done without people].<button data-cp="This project aims to [aim]. Data will be collected from [number] [participants] using [method] because [reason it cannot be done without people].">📋</button></div></div>
+<div class="sec"><h4>Participants and recruitment</h4><div class="d">Who is included and excluded, the sample size, how you will invite them, and whether anyone is vulnerable (for example under 18).</div><div class="tpl">Participants are [group] aged [range] who [criteria]. They will be recruited through [channel] and will not be pressured to take part.<button data-cp="Participants are [group] aged [range] who [criteria]. They will be recruited through [channel] and will not be pressured to take part.">📋</button></div></div>
+<div class="sec"><h4>Procedure</h4><div class="d">What participants do, how long it takes, where, and whether you record audio, video or screens.</div></div>
+<div class="sec"><h4>Risks and benefits</h4><div class="d">Possible discomfort or harm, how you reduce it, and the benefits to participants or society.</div><div class="tpl">The risk is minimal. Participants may feel [discomfort] when [situation]. This is reduced by [measure], and participants may skip any question or stop at any time.<button data-cp="The risk is minimal. Participants may feel [discomfort] when [situation]. This is reduced by [measure], and participants may skip any question or stop at any time.">📋</button></div></div>
+<div class="sec"><h4>Consent process</h4><div class="d">How you explain the study and obtain consent (signed form, or a consent question at the start of an online survey).</div></div>
+<div class="sec"><h4>Data management</h4><div class="d">What data you collect, whether it identifies people, where it is stored, who can access it, how long you keep it and how it is destroyed.</div><div class="tpl">Data will be [anonymised] and stored on [secure location] accessible only to the researcher and supervisor. Raw data will be deleted [time] after the project ends.<button data-cp="Data will be [anonymised] and stored on [secure location] accessible only to the researcher and supervisor. Raw data will be deleted [time] after the project ends.">📋</button></div></div>
+<div class="sec"><h4>Attachments</h4><div class="d">Information sheet, consent form, survey or interview questions, permission letters from organisations, and the supervisor’s endorsement.</div></div></div>
+<div class="card"><h3>Download templates</h3><div class="d">Plain text, ready to paste into Word or Google Docs. Replace everything in [brackets] and add your university’s logo and committee details.</div><p><button class="btn" id="d1">⬇ Participant Information Sheet</button> <button class="btn" id="d2">⬇ Informed Consent Form</button> <button class="btn g" id="d3">⬇ Data management checklist</button></p></div>
+<div class="two"><div class="card"><h3>Common mistakes</h3><ul class="bad"><li>Collecting data before approval, even a “pilot”.</li><li>Applying too late. Review can take time, so apply early.</li><li>Consent forms in difficult language, or that hide risks.</li><li>Collecting names, emails or photos you do not need.</li><li>Storing data on personal devices or shared drives without protection.</li><li>Recruiting classmates or your own students under pressure.</li></ul></div>
+<div class="card"><h3>Ethics self-check</h3><div id="ec"></div></div></div>
+
+<h2 id="gantt">How to create your Gantt chart</h2>
+<p class="sub">A Gantt chart shows each task as a bar over time, so you and your supervisor can see what happens when and what depends on what.</p>
+<div class="card steps">
+<div class="step"><h3>List all tasks</h3><div class="d">Break the project into tasks: literature collection, each chapter, system or experiment design, supervisor reviews, proofreading and submission.</div></div>
+<div class="step"><h3>Estimate start and end</h3><div class="d">Use weeks as your time unit. Be realistic: reviews by your supervisor take time, so leave a buffer before the 8 Jan 2027 deadline.</div></div>
+<div class="step"><h3>Show dependencies</h3><div class="d">Mark which tasks cannot start until another finishes (for example, methodology depends on the literature review and gap).</div></div>
+<div class="step"><h3>Add milestones</h3><div class="d">Mark key points such as SAF upload, chapter drafts, full draft and final upload.</div></div>
+<div class="step"><h3>Build it in a tool</h3><div class="d">Microsoft Excel or Google Sheets (colour cells across week columns), or an online planner. Search “how to make a Gantt chart in Excel” for tutorials.</div></div>
+<div class="step"><h3>Update it every week</h3><div class="d">Bring it to every supervisor meeting and show what is done, late or changed.</div></div></div>
+<div class="card"><h3>Example Gantt chart (illustrative only, adapt to your own project)</h3><div class="g-wrap"><div class="gantt" id="gc"></div></div><div class="d" style="margin-top:8px">Orange bars are tasks, green bars are milestones.</div></div>
+<div class="card"><h3>Example Gantt chart for CP1 and CP2 (illustrative only)</h3><div class="g-wrap"><div class="gantt" id="gc2" style="grid-template-columns:230px repeat(28,minmax(22px,1fr));min-width:960px"></div></div><div class="d" style="margin-top:8px">Weeks 1 to 14 are CP1, weeks 15 to 28 are CP2 (CP2 weeks 1 to 14). It ignores any break between semesters. Confirm the real CP2 dates with your coordinator, and plan ethics approval before any data collection or user testing.</div></div>
+
+<h2 id="lit">Collect relevant literature</h2>
+<p class="sub">Gather scholarly articles, books and reports that relate to your project. Start with these search tools, then use the academic databases below for peer-reviewed sources:</p>
+<div class="tools">
+<a href="https://scholar.google.com" target="_blank" rel="noopener"><b>Google Scholar</b><span>Broad search across papers, theses and citations.</span></a>
+<a href="https://www.semanticscholar.org" target="_blank" rel="noopener"><b>Semantic Scholar</b><span>AI-assisted search with paper summaries.</span></a>
+<a href="https://www.litmaps.com" target="_blank" rel="noopener"><b>Litmaps</b><span>Visual maps of how papers cite each other.</span></a>
+<a href="https://scispace.com" target="_blank" rel="noopener"><b>SciSpace</b><span>Search papers and get help understanding them.</span></a>
+<a href="https://www.researchrabbit.ai" target="_blank" rel="noopener"><b>ResearchRabbit</b><span>Discover related papers and authors.</span></a></div>
+<h3 style="margin-top:18px">Academic databases</h3><p class="d" style="margin:2px 0 10px">Search these for peer-reviewed journal and conference papers. Many need your university login, so access them through the Library website when you are off campus.</p>
+<div class="tools">
+<a href="https://www.scopus.com" target="_blank" rel="noopener"><b>Scopus</b><span>Large database of journals and conferences, with citation counts.</span></a>
+<a href="https://ieeexplore.ieee.org" target="_blank" rel="noopener"><b>IEEE Xplore</b><span>Engineering, computing and electronics papers and standards.</span></a>
+<a href="https://www.sciencedirect.com" target="_blank" rel="noopener"><b>ScienceDirect</b><span>Elsevier journals and books across science and technology.</span></a></div>
+<div class="card"><h3>Tips for good sources</h3><div class="d">Prefer recent (about the last 5 years) peer-reviewed papers, plus a few classic foundational ones. Combine search tools (to discover papers quickly) with Scopus, IEEE Xplore and ScienceDirect (to find and download peer-reviewed full texts). If you cannot open a paper, log in through the Library or ask a librarian. Check the Library’s Information Skills and Referencing training notes. Save every source with its full citation as you go, so referencing is easy later. Always check the AI summaries against the original paper.</div></div>
+
+<h2>Literature review and literature synthesis</h2>
+<p class="sub">Organise and analyse your sources in a table (Excel or Google Sheets) to compare them and find themes, methods and gaps.</p>
+<div class="card"><h3>Learn how</h3><div class="d">Watch “How to Write a Literature Review: 3 Minute Step-by-step Guide” from Scribbr, and the video on research and synthesis tables recommended by your supervisor.</div>
+<p><a class="btn" href="https://www.youtube.com/results?search_query=How+to+Write+a+Literature+Review+3+Minute+Step-by-step+Guide+Scribbr" target="_blank" rel="noopener">Search the Scribbr video</a> <a class="btn g" href="https://www.youtube.com/results?search_query=research+and+synthesis+tables+literature+review" target="_blank" rel="noopener">Search synthesis table videos</a></p></div>
+<div class="card"><h3>From table to writing</h3><ol class="s"><li>Read each paper and fill one row of the synthesis table.</li><li>Look down the columns to group papers into themes.</li><li>Compare methods, results and limitations across papers.</li><li>Write each theme as a paragraph that compares sources, not one paragraph per paper.</li><li>End with the gap: what is missing, and how your project addresses it.</li></ol></div>
+
+<h2 id="synth">Literature synthesis table (template)</h2>
+<p class="sub">Type directly in the table. It is saved in this browser. Download it as a CSV to open in Excel or Google Sheets.</p>
+<div class="card"><div style="margin-bottom:10px"><button class="btn" id="ar">+ Add row</button> <button class="btn g" id="dc">⬇ Download CSV</button> <button class="btn g" id="rs">Reset table</button></div><div class="g-wrap"><table id="st"></table></div></div>
+
+<h2 id="log">Keep your logbook</h2>
+<div class="cols"><div class="card"><h3>Each week write</h3><div class="d">Date of meeting, what you did, what your supervisor advised, problems faced, plan for next week.</div></div>
+<div class="card"><h3>Reflect critically</h3><div class="d">What worked, what did not, what you learned, and what you will change. Reflection earns marks, a simple list of tasks does not.</div></div>
+<div class="card"><h3>Get it signed</h3><div class="d">Ask your supervisor to sign regularly so the logbook is ready to upload on 8 Jan 2027.</div></div></div>
+
+<h2>Before you submit</h2>
+<div class="card"><div id="sl"></div></div>
+
+<h2 id="faq">FAQ</h2>
+<div class="card"><details><summary>How often should I meet my supervisor?</summary><div class="d">Regularly through Weeks 3 to 14. Bring your Gantt chart, new drafts and logbook each time.</div></details>
+<details><summary>What if I cannot find my supervisor’s name?</summary><div class="d">Check the supervisor-student list in eLearn (posted at the end of Week 3), then contact your coordinator.</div></details>
+<details><summary>Can I submit late?</summary><div class="d">No. Without submission or late submission, students are marked as ZERO. Upload early and check that the files open.</div></details>
+<details><summary>Do tools like AI summarisers count as sources?</summary><div class="d">No. Use them to find and understand papers, then cite the original papers, not the tool. Always verify what they tell you.</div></details></div>
+<footer>Dates follow the Capstone Project 1 timeline. Ask your supervisor if anything is unclear.</footer>
+</main>
+<script>
+const $=s=>document.querySelector(s);
+const esc=s=>String(s??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const ld=(k,f)=>{try{return JSON.parse(localStorage.getItem(k))??f}catch(e){return f}},sv=(k,v)=>localStorage.setItem(k,JSON.stringify(v));
+/* Countdown */
+const n=Math.round((new Date("2027-01-08")-new Date(new Date().toLocaleDateString("en-CA",{timeZone:"Asia/Kuala_Lumpur"})))/864e5);
+$("#cd").textContent=n>0?n+" days":n===0?"Today!":"Closed";
+/* Action items (edit this list to add new tasks) */
+const ACTN=[
+["gantt","Develop a Gantt chart","Outline the timeline and milestones of your project to manage time and track progress, using Excel, Google Sheets or an online platform. Due before 7 Nov 2026. See the <a href='#gantt'>Gantt guide</a>."],
+["toc","Develop a Table of Contents","Outline the overall structure of your research proposal (Chapter 1 Introduction, 1.1 Problem Statement, 1.2 Objectives, etc.). Due before 7 Nov 2026. See the <a href='#toc'>Table of Contents guide</a>."]];
+const ACTO=[
+["collect","Collect relevant literature","Start gathering scholarly articles, books and reports for your project using Google Scholar, Semantic Scholar, Litmaps, SciSpace and ResearchRabbit, and academic databases such as Scopus, IEEE Xplore and ScienceDirect. See <a href='#lit'>Literature</a>."],
+["synth","Literature review and literature synthesis","Organise and analyse the literature in a table in Excel or Google Sheets to compare sources and spot themes, methodologies and gaps. Use the <a href='#synth'>template</a>."],
+["share","Share your progress at the next meeting","Bring your Gantt chart, table of contents and synthesis table to your next supervisor meeting."]];
+const ACT=[...ACTN,...ACTO];
+const SUB=[["saf","SAF with supervisor’s signature uploaded to eLearn (30 Oct 2026)"],["ps","Proposal (PS) complete: all chapters, abstract and references"],["lg","Logbook complete and signed (LG)"],["fmt","Both files open correctly and are named as required"],["up","Both uploaded to eLearn before 8 Jan 2027"]];
+let ck=ld("ck",{});
+function list(el,arr,pre){$(el).innerHTML=arr.map(a=>`<label class="chk ${ck[a[0]]?"done":""}"><input type="checkbox" data-k="${a[0]}" ${ck[a[0]]?"checked":""}><div><div class="t"><b>${esc(a[1])}</b></div>${a[2]?`<div class="d">${a[2]}</div>`:""}</div></label>`).join("")}
+function draw(){list("#al",ACTN,0);list("#al2",ACTO,0);list("#sl",SUB,1);
+ const d=ACT.filter(a=>ck[a[0]]).length;$("#pt").textContent=`${d} of ${ACT.length} action items done`;$("#pb").style.width=d/ACT.length*100+"%";
+ document.querySelectorAll("input[data-k]").forEach(i=>i.onchange=()=>{ck[i.dataset.k]=i.checked;sv("ck",ck);draw()})}
+const dn=Math.round((new Date("2026-11-07")-new Date(new Date().toLocaleDateString("en-CA",{timeZone:"Asia/Kuala_Lumpur"})))/864e5);$("#dd").textContent=dn>1?"· "+(dn-1)+" days left":dn===1?"· due today":"· past due";
+draw();
+/* Example Gantt: [name, startWeek, endWeek, milestone?] */
+const G=[["Meet supervisor, upload SAF",1,5],["Ethics application (if human subjects)",4,7],["Literature collection",4,8],["Literature review table",6,9],["Chapter 1 draft",5,7],["Chapter 2 draft",7,10],["Chapter 3 methodology",9,11],["Chapter 4 work plan and Gantt",10,12],["Full draft, abstract, references",11,13],["Logbook (weekly)",3,14],["Final submission",14,14,1]];
+let h='<div class="h" style="text-align:left">Task</div>'+Array.from({length:14},(_,i)=>`<div class="h">${i+1}</div>`).join("");
+for(const[t,s,e,m]of G){h+=`<div class="n">${esc(t)}</div>`+Array.from({length:14},(_,i)=>{const w=i+1;return`<div class="c">${w>=s&&w<=e?`<div class="b ${m?"m":""}"></div>`:""}</div>`}).join("")}
+$("#gc").innerHTML=h;
+/* Synthesis table */
+const COLS=["Author(s) and year","Title and source / DOI","Problem addressed","Method / technology","Data or context","Key findings","Limitations","Relevance and gap for my project"];
+let rows=ld("syn",[Array(COLS.length).fill(""),Array(COLS.length).fill("")]);
+function tbl(){$("#st").innerHTML="<tr>"+COLS.map(c=>`<th>${c}</th>`).join("")+"</tr>"+rows.map((r,i)=>"<tr>"+r.map((v,j)=>`<td><textarea data-r="${i}" data-c="${j}">${esc(v)}</textarea></td>`).join("")+"</tr>").join("");
+ document.querySelectorAll("#st textarea").forEach(t=>t.oninput=()=>{rows[+t.dataset.r][+t.dataset.c]=t.value;sv("syn",rows)})}
+tbl();
+$("#ar").onclick=()=>{rows.push(Array(COLS.length).fill(""));sv("syn",rows);tbl()};
+$("#rs").onclick=()=>{if(confirm("Clear the whole table?")){rows=[Array(COLS.length).fill("")];sv("syn",rows);tbl()}};
+$("#dc").onclick=()=>{const q=v=>'"'+String(v).replace(/"/g,'""')+'"';const csv="\ufeff"+[COLS,...rows].map(r=>r.map(q).join(",")).join("\n");
+ const a=document.createElement("a");a.href=URL.createObjectURL(new Blob([csv],{type:"text/csv"}));a.download="literature-synthesis.csv";a.click();URL.revokeObjectURL(a.href)};
+
+/* ===== Chapter writing guides (edit the text here) ===== */
+const W=[
+{id:"c1",tab:"Chapter 1",title:"Chapter 1: Introduction",purpose:"Convince the reader that there is a real problem worth solving, and say exactly what you will do about it. A reader should understand your whole project after this chapter.",
+secs:[
+["1.1 Background","Go from broad to narrow like a funnel: the general area, the trend or context, then the specific situation. Use 2 to 4 paragraphs, define key terms, and support every claim with a citation or evidence.","[Area] is increasingly used in [context] because [reason] (Author, Year). In [specific setting], however, [challenge or trend] has become more evident (Author, Year)."],
+["1.2 Problem statement","The most important paragraph of the proposal. Say who has the problem, what goes wrong, the evidence, and what happens if nothing is done. Write it first, and rewrite it until it is one clear paragraph.","Currently, [group of people] faces [problem] when [situation]. Existing [solutions] do not [limitation] (Author, Year). As a result, [consequence]."],
+["1.3 Aim and objectives","One overall aim and about 3 to 4 objectives. Start each with an action verb (identify, design, develop, evaluate). Each objective must be measurable and must be answered later in Chapter 3 (method) and in your results.","The aim of this project is to [overall goal]. The objectives are: (1) To identify [what] by [how]; (2) To design [what]; (3) To develop [what] using [approach]; (4) To evaluate [what] using [measure]."],
+["1.4 Research questions (if required)","Turn each objective into a question that can be answered with evidence. Ask your supervisor whether your programme requires them.","RQ1: What are the [factors/requirements] of [topic]? RQ2: How well does [solution] perform in terms of [measure]?"],
+["1.5 Scope and limitations","State what is included and, just as important, what is not: users, data, platform, location and time. This keeps the project doable.","This project focuses on [included]. It does not cover [excluded] because [reason]. The study is limited to [constraint]."],
+["1.6 Significance","Explain who benefits and how: academic contribution, practical use, social or economic value.","The outcome will help [beneficiary] to [benefit]. It also contributes [new knowledge or tool] to the field of [area]."],
+["1.7 Report organisation","One short paragraph that summarises each chapter.","Chapter 2 reviews related work. Chapter 3 describes the methodology. Chapter 4 presents the work plan."]],
+ex:"Example topic only (do not copy): a mobile app to reduce food waste in a university cafeteria. Problem: students cannot see which meals are likely to run out, so cooked food is wasted. Objective: To evaluate whether the app reduces unsold meals over a four-week trial, measured as the percentage of meals discarded.",
+steps:["Agree your topic and direction with your supervisor.","Read 5 to 10 papers to understand the area and find evidence of the problem.","Write the problem statement first.","Derive the aim and objectives from the problem.","Write the background so that it leads naturally to the problem.","Define the scope, then the significance.","Check alignment: does every objective solve part of the problem?"],
+bad:["A topic that is too broad (“AI in education”).","Objectives that are tasks, not outcomes (“to learn Python”).","Claiming a problem with no citation or data.","Describing the solution before the problem is clear.","Objectives that cannot be measured."],
+look:"Clear problem backed by evidence, SMART objectives, realistic scope, and a clear link between problem, objectives and significance.",
+chk:["The problem statement fits in one paragraph and is backed by cited evidence","Each objective starts with an action verb and can be measured","The scope says what is excluded","Every objective will be answered in Chapter 3","Background funnels from broad to specific"]},
+
+{id:"c2",tab:"Chapter 2",title:"Chapter 2: Literature review",purpose:"Show that you understand the problem and what has already been done, compare existing solutions critically, and end with research gaps that your project closes or reduces. It is a story that leads to your project, not a list of summaries.",
+qt:"Plan your literature review as a story: questions to think about",
+qs:[
+["Background and overview of the topic",["What is this topic or domain about, and who is involved or affected?","Why does it matter now? What do reports and statistics say about its size or trend?","How do I explain key terms to someone new to the field?"]],
+["Causes of the problem",["What are the main causes or contributing factors?","Which causes are technical, human, organisational, economic or policy-related?","Which causes can my project realistically influence?"]],
+["Implications and impact",["What happens because of this problem? Think of economic loss, safety issues, health issues, poverty, low productivity, societal barriers, food waste and environmental damage.","Which of these affect my target group the most? What evidence or numbers support this?","Why is it urgent to solve it?"]],
+["Traditional or conventional approaches",["How is the problem handled today without advanced technology (manual work, paper records, inspection, policies, training)?","What do these approaches do well?","Why are they not enough: cost, time, accuracy, scale, human error, accessibility?"]],
+["Digital, smart and latest solutions",["Which software systems, mobile or web apps, IoT or smart systems, and AI or machine learning solutions have been proposed in recent years?","Which technologies, algorithms and datasets do they use, and what results do they report?","Which are the most relevant and recent studies for my project?"]],
+["Strengths and weaknesses of the latest solutions",["What do these solutions do better than conventional approaches?","Critically, what are their limitations: accuracy in real conditions, small or biased datasets, no user testing, high cost, poor usability, privacy, scalability, not deployed, limited to one language or context?","Can I summarise the comparison in a table?"]],
+["Research gaps",["After comparing, what remains unsolved or weak?","Can I state each gap as a specific sentence, for example “few studies…”, “no existing system combines…”, “current models have not been tested on…”?","Is each gap supported by citations?"]],
+["Link to my project",["Which gaps will my project close or minimise, and how?","What is my proposed solution or approach, in one sentence?","Which objective in Chapter 1 matches each gap?"]]],
+secs:[
+["2.1 Introduction and search strategy","Tell the reader how you found sources: databases (for example Scopus, IEEE Xplore, ScienceDirect and Google Scholar), keywords, years, and what you included or excluded.","Sources were retrieved from [Scopus, IEEE Xplore, ScienceDirect, Google Scholar] using the keywords “[keyword 1]”, “[keyword 2]” for [year range]. Studies were included if [criteria] and excluded if [criteria]."],
+["2.2 Background of the topic","Introduce the domain, define key terms and show the size or trend of the problem with evidence.","[Topic] refers to [definition] (Author, Year). It affects [group], with [statistic] reported in [place/time] (Author, Year)."],
+["2.3 Causes and implications","Explain the main causes, then the consequences such as economic loss, safety, health, poverty, productivity, societal barriers, food waste or environmental damage. Choose the ones relevant to your topic.","The problem is mainly caused by [cause 1] and [cause 2] (Author, Year). It leads to [economic loss/safety/health/environmental impact], estimated at [figure] (Author, Year)."],
+["2.4 Traditional and conventional approaches","Describe how the problem is handled without advanced technology, what works, and why it is not enough.","Traditionally, [process] is carried out through [manual method] (Author, Year). Although this is [strength], it is limited by [time/cost/error/scale] (Author, Year)."],
+["2.5 Digital, smart and AI-based solutions","Review recent digital solutions (systems, apps, IoT, AI) by theme, such as by technology or approach. For each, say what was built, how it was tested and what results were found.","Recent studies introduced [technology] to address [problem]. [Author A, Year] developed [system] using [method] and achieved [result], whereas [Author B, Year] proposed [other approach] with [result]."],
+["2.6 Critical analysis and comparison","Acknowledge strengths, then criticise weaknesses. Use a table with columns for study, approach, data, results, strengths and limitations.","The main strength of [solution] is [strength]. However, it has not been [tested with users/validated on real data/deployed], and its [cost/accuracy/usability] remains a concern (Author, Year)."],
+["2.7 Research gaps","List the gaps as specific, evidence-based statements. Three to four clear gaps are better than many vague ones.","Gap 1: Few studies have [gap] (Authors, Year). Gap 2: Existing systems do not [gap]. Gap 3: [Technique] has not been evaluated in [context]."],
+["2.8 Link to the proposed project and summary","Show how your project closes or minimises each gap, and link each gap to an objective.","To address Gap 1, this project proposes [solution/approach], which corresponds to Objective [x]. To address Gap 2, [solution], corresponding to Objective [y]."]],
+ex:"Example gap-to-project table (do not copy). Gap: students cannot see real-time food availability in cafeterias. Evidence: Author, Year. How my project addresses it: a student-facing app showing predicted availability. Objective: Objective 3.",
+steps:["Answer the questions above in note form before searching.","Collect sources and fill one row of the synthesis table per paper.","Group the papers: background, causes, implications, conventional, digital and AI solutions.","Compare the latest solutions in a table and mark strengths and limitations.","Write the gaps, then link each gap to your project and objectives.","Write section by section, paraphrase in your own words and cite as you go.","Check that every citation appears in the reference list."],
+bad:["“Author A said… Author B said…” with no comparison.","Only describing the latest solutions without criticising weaknesses.","Jumping straight to AI or technology without explaining the problem and its causes.","Old, weak or non-scholarly sources (blogs, Wikipedia).","Gaps that are vague, unsupported or not linked to your objectives.","Copying text or pasting AI output. Always paraphrase, cite and run a similarity check."],
+look:"A clear problem background with evidence, comparison of conventional and latest solutions, critical analysis of strengths and weaknesses, specific research gaps, and a clear link from the gaps to the project.",
+chk:["I explained the background, causes and implications with evidence","I covered conventional approaches and why they are not enough","I reviewed recent digital, smart or AI solutions","I acknowledged strengths and criticised weaknesses","Research gaps are specific and supported by citations","Each gap is linked to my project and to an objective","The review is organised by theme and all citations match the reference list"]},
+
+{id:"c3",tab:"Chapter 3",title:"Chapter 3: Methodology",purpose:"Explain how you will achieve each objective in enough detail that another person could follow your plan, and justify each choice. Depending on your project, it may cover an application system, an AI model, or both.",
+qt:"Think about your project type first",
+qs:[
+["What am I building?",["Is it an application system (web, mobile, desktop, IoT), an AI model, or an AI model integrated into a system?","Who are the users and what do they need?","Which parts of this chapter apply to me?"]],
+["How will I know what users need?",["Who are the potential users and how can I reach them?","What will a survey or interview ask to find functional requirements (current practice, pain points, wanted features) and non-functional requirements (speed, usability, security)?"]],
+["If my project has an AI model",["What data do I need, where will it come from and who labels it?","How will I clean and prepare it?","How will I measure whether the model is good enough, and compare it with a baseline?","How will the model be integrated into the system?"]],
+["How will I test it?",["How will I test that the system works (test cases) and that users find it useful (user testing)?","What are my success criteria?","Do I need ethics approval for surveys or user testing?"]]],
+secs:[
+["3.1 Research design and overall approach","Name your approach (for example Agile or waterfall system development, design science, experiment, or a combined AI and system approach) and justify it from the literature.","This project follows [approach] because [justification]. It has [number] phases: [requirements, design, AI model development, system development, integration, testing and evaluation]."],
+["3.2 Project framework","Show the phases in a flow diagram and map each objective to an activity and an output.","Objective 1 is achieved through [activity], producing [output]. Objective 2 is achieved through [activity], producing [output]."],
+["3.3 Requirements gathering: user survey (application system)","Survey potential users to obtain the functional and non-functional requirements. Describe the target users, sample size, how you recruit them and the question types: background, current practice, pain points, features they want and rate, and willingness to use. Analyse the results and turn them into a requirements list. This involves human subjects, so see the Ethics guide.","A survey of [number] [target users] will be conducted using [Google Forms/other] to identify requirements. Questions cover [current practice, problems faced, desired features, usability expectations]. Responses will be analysed using [descriptive statistics/theme coding] to derive the functional requirements."],
+["3.4 System analysis and design (application system)","Present the system with diagrams: use case diagram (actors, use cases, system boundary, include and extend links) with short use case descriptions, plus activity diagram or flowchart, ERD or data model, system architecture, and UI wireframes.","Figure [x] shows the use case diagram. The actors are [actor 1] and [actor 2]. The main use cases are [use case 1], [use case 2] and [use case 3], derived from the survey requirements."],
+["3.5 AI model: data collection","Describe the data source (public dataset or self-collected), size, format, labelling, licence and quality. If you collect it from people or use personal data, ethics approval is needed.","The dataset consists of [number] [images/text/records] from [source], labelled by [who/how]. Data will be collected [period/method] with [permission/ethics approval]."],
+["3.6 AI model: preprocessing","Explain cleaning, handling missing or noisy data, normalisation, augmentation or feature engineering, and splitting into training, validation and test sets without leaking data between them.","The data will be cleaned by [steps], [normalised/augmented] using [technique], and split into [70/15/15]% for training, validation and testing."],
+["3.7 AI model: development and evaluation","Choose a baseline and candidate models, say how you train them (tools, hyperparameters) and how you evaluate: classification (accuracy, precision, recall, F1, confusion matrix), regression (MAE, RMSE) and so on, with cross-validation and error analysis. Compare against the baseline and against the existing studies from Chapter 2.","Models [A] and [B] will be trained using [framework] and compared with the baseline [model]. Performance will be measured using [metrics] on the held-out test set. The model is acceptable if [criterion]."],
+["3.8 AI model: integration into the system","Explain how the trained model becomes part of the application: model export, API or service, where it runs, input and output format, response time, and how it will be updated or monitored.","The trained model will be exported as [format] and served through [API/service], called by the [web/mobile app] with [input], returning [output] within [time]."],
+["3.9 System testing and user testing","Plan functional testing with test cases, then user testing: participants, tasks, and measures such as task completion, errors, time, a usability questionnaire (for example SUS) and feedback. Define success criteria and how results answer each objective.","[Number] participants will perform [tasks] using the prototype. Usability will be measured using [SUS/questionnaire] and the system is successful if [criterion]."],
+["3.10 Tools, technologies and ethics","List hardware, software and libraries with a reason for each choice. State ethics approval needs for surveys, user testing and data collection.","[Tool] was selected because [reason], compared with [alternative]. Ethics approval will be obtained before [survey/user testing/data collection]."]],
+ex:"Example (do not copy): a food-waste app with a demand-prediction model. Survey 50 cafeteria users for requirements, draw use cases for student and staff, collect two years of sales records, clean and split the data, compare a baseline with two models using MAE, serve the best model through an API to the app, then run user testing with 15 students.",
+steps:["Decide if your project is an application system, an AI model, or both.","Plan the user survey and get ethics approval if human subjects are involved.","Turn the survey results into requirements, then draw the use case diagram and other designs.","For an AI model, plan the data, preprocessing, training and evaluation.","Plan how the model will be integrated into the system.","Write the testing plan with success criteria.","Check that every objective has a method and an evaluation."],
+bad:["A list of tools with no justification.","Requirements invented without asking potential users.","Use case diagrams with no actors or that do not match the requirements.","AI model with no baseline, unclear data source or a test set mixed with training data.","Evaluating only accuracy on imbalanced data.","No plan to integrate the model into the system or to test with users.","Collecting data from people without ethics approval."],
+look:"A suitable and justified design, requirements based on user input, clear system design with diagrams, a sound AI data and evaluation plan if applicable, integration and testing plans, and methods mapped to objectives.",
+chk:["Every objective is mapped to an activity and an output","The survey plan will gather functional requirements from real users","Use case diagram and other designs are planned or drawn","Data source, preprocessing and evaluation metrics are defined (if AI)","Integration of the model into the system is explained (if AI)","User testing and success criteria are measurable","Ethics approval is planned wherever people or personal data are involved"]},
+
+{id:"c4",tab:"Chapter 4",title:"Chapter 4: Work plan (CP1 and CP2)",purpose:"Prove that the whole capstone project is feasible. Present the work plan and Gantt chart for both CP1 (proposal) and CP2 (implementation and evaluation), with resources and risks.",
+qt:"Plan the whole project: questions to think about",
+qs:[
+["What will I finish in CP1?",["Which tasks lead to the proposal (SAF, literature review, Chapters 1 to 4, ethics application, logbook)?","What are the deadlines between now and 8 Jan 2027?"]],
+["What will I do in CP2?",["What do I build or study in CP2: final requirements, design, data collection, model training, development, integration, testing, user testing, final report and presentation?","Which tasks need ethics approval before they can start?","What does my coordinator say about the CP2 timeline and deliverables?"]],
+["How long and in what order?",["How many weeks does each task need, with a buffer?","Which tasks depend on others (for example, model integration depends on both the model and the system)?","What are my milestones?"]],
+["What could go wrong?",["Which risks are specific to my project (data, ethics delay, hardware, model accuracy, user recruitment)?","How will I reduce each one?"]]],
+secs:[
+["4.1 Work plan for CP1","List the CP1 tasks with deliverables and durations: SAF upload, literature collection and synthesis, ethics application (if needed), Chapters 1 to 4, Gantt chart, abstract and references, logbook, final upload of the proposal and logbook.","CP1 tasks run from Week 1 to Week 14. Task [x]: [task], deliverable: [output], duration: [n] weeks, due [date]."],
+["4.2 Work plan for CP2","List the CP2 tasks with deliverables and durations, for example finalising requirements and design, data collection and preprocessing, model training and evaluation, system development, integration, system and user testing, evaluation, final report, demonstration and presentation. Check the CP2 timeline and deliverables with your coordinator.","CP2 tasks run from Week 1 to Week 14 of the next phase. Task [x]: [task], deliverable: [output], duration: [n] weeks."],
+["4.3 Gantt chart for CP1 and CP2","Draw tasks as bars over weeks for both phases, either as one chart or one per phase, showing dependencies and milestones. Mark ethics approval before any data collection or user testing. See the CP1 and CP2 example in the Gantt section.","Figure [x] presents the Gantt chart for CP1 and CP2. Task [B] depends on Task [A], and the milestones are [proposal submission, ethics approval, prototype, final report]."],
+["4.4 Resources","List software, hardware, datasets, cloud services, access and cost, and how you will obtain them.","The project requires [resource], available through [source/university/free licence]. The estimated cost is [amount or nil]."],
+["4.5 Risk analysis","Table of specific risks with likelihood, impact and mitigation, covering both CP1 and CP2.","Risk: [ethics approval delayed]. Likelihood: medium. Impact: high. Mitigation: [apply early and prepare an alternative public dataset]."],
+["4.6 Expected deliverables","Summarise what you will deliver at the end of CP1 and at the end of CP2 and how they relate to the objectives.","At the end of CP1: [proposal and logbook]. At the end of CP2: [working system/model, evaluation results, final report], fulfilling Objectives [1 to 4]."]],
+ex:"Example risks (do not copy): ethics approval takes longer than planned (mitigation: submit by Week 6 of CP1 and prepare an offline dataset as backup); model accuracy is lower than expected (mitigation: schedule two extra weeks for tuning and compare more than one model).",
+steps:["List CP1 tasks, then CP2 tasks, from your methodology.","Estimate durations honestly and add buffer time.","Work out dependencies and milestones across both phases.","Build the Gantt chart for CP1 and CP2 in Excel, Google Sheets or an online tool.","Write the resource list and risk table.","Update the chart every week and bring it to supervisor meetings."],
+bad:["A Gantt chart that covers only CP1.","No dependencies or milestones.","Data collection or user testing planned before ethics approval.","Unrealistic timing with no buffer.","Generic risks such as “laziness” or “time”.","Tasks that do not match Chapter 3."],
+look:"A realistic work plan and Gantt chart for both CP1 and CP2 with dependencies and milestones, resources identified, specific risks with mitigation, and consistency with the methodology.",
+chk:["Work plan and Gantt chart cover both CP1 and CP2","Every task has a deliverable and a duration","Dependencies and milestones are shown","Ethics approval comes before data collection and user testing","Risks are specific, with likelihood, impact and mitigation","The plan matches the methodology in Chapter 3"]},
+
+{id:"ab",tab:"Abstract and references",title:"Abstract, references and quality",purpose:"These are marked too. Write the abstract last, keep references accurate, and polish the whole document.",
+secs:[
+["Abstract","A short summary of the whole proposal in one paragraph. Write it after everything else. Ask your supervisor for the word limit.","[Context in one sentence.] [The problem.] This project aims to [aim]. [Method in one or two sentences.] The expected outcome is [outcome and benefit]."],
+["References","Use the referencing style required by your programme (APA, IEEE or another, as taught in the Library training). Use a reference manager such as Zotero or Mendeley. Every in-text citation must appear in the list and every item in the list must be cited.","Author, A. (Year). Title of the work. Journal or Publisher, volume(issue), pages. DOI"],
+["Quality of writing and format","Check structure, headings, numbering, figure and table captions, a table of contents, page numbers, spelling and grammar, consistent tense and a formal tone. Run the similarity check and have a friend read it.","Use present or future tense for what the project will do, and past tense for what other researchers did."]],
+ex:"",
+steps:["Collect references in a reference manager from the start.","Write the abstract only when the chapters are final.","Format headings, captions and the table of contents.","Proofread twice, once for content and once for language.","Check the similarity report and fix any copied text.","Export the final file and check it opens properly."],
+bad:["An abstract that is just the introduction pasted again.","References missing, inconsistent or with no DOI.","In-text citations that are not in the list.","Figures and tables with no caption or not mentioned in the text.","Last-minute formatting that breaks the layout."],
+look:"A clear abstract, accurate and consistent referencing, and a well-structured, well-written document.",
+chk:["Abstract covers problem, aim, method and expected outcome","References follow one style and match the citations","Figures and tables are captioned and referred to","Spelling, grammar and formatting are checked","Similarity check done and concerns fixed"]},
+
+{id:"all",tab:"Putting it together",title:"Putting your proposal together",purpose:"A good order of work and a steady review cycle with your supervisor matter as much as the writing.",
+secs:[
+["Recommended order of writing","Write in this order: problem statement and objectives, synthesis table, Chapter 3 outline, Chapter 2, Chapter 4 and Gantt, Chapter 1 background and the rest, then the abstract and final polish.",""],
+["Review cycle with your supervisor","Send one chapter at a time by the planned date, with a short note of what you want feedback on. Record the feedback and your response in the logbook, then revise and show the changes.","Dear [Supervisor], attached is my draft of Chapter [x]. I would appreciate your comments on [specific question]. My next draft will follow on [date]."],
+["Consistency check before submission","Check that the problem, objectives, methodology, evaluation and work plan all line up. A marker should be able to follow one thread from problem to plan.","Problem, then objectives, then methods, then evaluation, then deliverables: the same thread throughout."]],
+ex:"",
+steps:["Set a draft date for each chapter in your Gantt chart.","Submit drafts early so feedback arrives in time.","Keep a version history and file names with dates.","Upload the Proposal (PS) and Logbook (LG) to eLearn before 8 Jan 2027."],
+bad:["Writing the whole proposal in the last two weeks.","Ignoring supervisor feedback or not recording it.","Chapters that contradict each other.","Waiting until the last day to upload."],
+look:"A coherent proposal with progress that is visible in your logbook and drafts.",
+chk:["All chapter drafts reviewed by my supervisor","Objectives, methods, evaluation and plan are consistent","Logbook is complete and signed","Files uploaded early and checked"]}
+];
+let wi=0;
+function wdraw(){
+ $("#wt").innerHTML=W.map((c,i)=>`<button class="${i===wi?"on":""}" data-i="${i}">${c.tab}</button>`).join("");
+ const c=W[wi],done=c.chk.filter((_,j)=>ck["w_"+c.id+j]).length;
+ $("#wp").innerHTML=`<h3 style="font-size:20px">${esc(c.title)}</h3><p>${esc(c.purpose)}</p>${c.qs?`<div class="ex" style="background:var(--bg);border:1px solid var(--line)"><h3>${esc(c.qt)}</h3>${c.qs.map((q,i)=>`<div class="sec"><h4>${i+1}. ${esc(q[0])}</h4><ul class="qs">${q[1].map(x=>`<li>${esc(x)}</li>`).join("")}</ul></div>`).join("")}</div>`:""}
+ ${c.secs.map(x=>`<div class="sec"><h4>${esc(x[0])}</h4><div class="d">${esc(x[1])}</div>${x[2]?`<div class="tpl">${esc(x[2])}<button title="Copy template" data-cp="${esc(x[2])}">📋</button></div>`:""}</div>`).join("")}
+ ${c.ex?`<div class="ex"><b>Example.</b> ${esc(c.ex)}</div>`:""}
+ <div class="two"><div><h3>Steps to follow</h3><ol class="s">${c.steps.map(t=>`<li>${esc(t)}</li>`).join("")}</ol></div><div><h3>Common mistakes</h3><ul class="bad">${c.bad.map(t=>`<li>${esc(t)}</li>`).join("")}</ul></div></div>
+ <div class="ex" style="background:var(--warnbg)"><b>What markers look for.</b> ${esc(c.look)} <span class="d">(Always check the official CP1 rubric.)</span></div>
+ <h3>Self-check <span class="d">(${done} of ${c.chk.length})</span></h3>${c.chk.map((t,j)=>`<label class="chk ${ck["w_"+c.id+j]?"done":""}"><input type="checkbox" data-w="w_${c.id}${j}" ${ck["w_"+c.id+j]?"checked":""}><div class="t">${esc(t)}</div></label>`).join("")}`;
+ document.querySelectorAll("#wt button").forEach(b=>b.onclick=()=>{wi=+b.dataset.i;wdraw()});
+ document.querySelectorAll("[data-w]").forEach(i=>i.onchange=()=>{ck[i.dataset.w]=i.checked;sv("ck",ck);wdraw()});
+ document.querySelectorAll("[data-cp]").forEach(b=>b.onclick=async()=>{try{await navigator.clipboard.writeText(b.dataset.cp);b.textContent="✓"}catch(e){prompt("Copy:",b.dataset.cp)}setTimeout(()=>b.textContent="📋",1200)});
+}
+wdraw();
+$("#sk").onclick=()=>{let t="CAPSTONE PROJECT 1 PROPOSAL\nTitle: \nName: \nSupervisor: \n\nABSTRACT\n[Write last. Context, problem, aim, method, expected outcome.]\n\n";
+ W.slice(0,4).forEach(c=>{t+=c.title.toUpperCase()+"\n";c.secs.forEach(x=>{t+="\n"+x[0]+"\n["+x[1]+"]\n"});t+="\n"});
+ t+="REFERENCES\n[Use the required style. Every citation must appear here.]\n\nAPPENDICES\n";
+ const a=document.createElement("a");a.href=URL.createObjectURL(new Blob([t],{type:"text/plain"}));a.download="proposal-skeleton.txt";a.click();URL.revokeObjectURL(a.href)};
+
+/* ===== Ethics ===== */
+const EQ=["I will survey, interview or observe people","I will test my system or prototype with users","I will record people (audio, video, screen or photos)","I will use data that identifies people (names, emails, IDs, locations)","My participants include students, minors, patients or other vulnerable people","I will ask about sensitive topics (health, finances, beliefs, personal experiences)"];
+function qdraw(){
+ $("#eq").innerHTML=EQ.map((t,i)=>`<label class="q"><input type="checkbox" data-q="eq${i}" ${ck["eq"+i]?"checked":""}><span>${esc(t)}</span></label>`).join("");
+ const any=EQ.some((_,i)=>ck["eq"+i]);
+ $("#er").className="res "+(any?"y":"n");
+ $("#er").innerHTML=any?"⚠ You most likely need ethics approval. Submit your application and wait for approval BEFORE collecting any data. Confirm the process with your supervisor.":"✓ If your project uses only public, non-personal data or no people at all, you may not need approval. Confirm with your supervisor and write a short note in Chapter 3 explaining why.";
+ document.querySelectorAll("[data-q]").forEach(i=>i.onchange=()=>{ck[i.dataset.q]=i.checked;sv("ck",ck);qdraw()});
+}
+qdraw();
+const EC=["My supervisor agrees on whether I need approval","Participants, sample size and recruitment are defined","Information sheet and consent form are ready","Survey or interview questions are attached","Data storage, access and deletion are described","Supervisor reviewed and signed the application","Application submitted and written approval received before data collection"];
+function ecdraw(){
+ $("#ec").innerHTML=EC.map((t,i)=>`<label class="chk ${ck["ec"+i]?"done":""}"><input type="checkbox" data-e="ec${i}" ${ck["ec"+i]?"checked":""}><div class="t">${esc(t)}</div></label>`).join("");
+ document.querySelectorAll("[data-e]").forEach(i=>i.onchange=()=>{ck[i.dataset.e]=i.checked;sv("ck",ck);ecdraw()});
+}
+ecdraw();
+function dlTxt(name,t){const a=document.createElement("a");a.href=URL.createObjectURL(new Blob([t],{type:"text/plain"}));a.download=name;a.click();URL.revokeObjectURL(a.href)}
+$("#d1").onclick=()=>dlTxt("participant-information-sheet.txt",`PARTICIPANT INFORMATION SHEET
+[University name, Faculty]
+
+Project title: [title]
+Researcher: [name, programme, email]
+Supervisor: [name, email]
+
+1. Purpose of the study
+[Explain in simple language what the project is about and why it is being done.]
+
+2. Why you are invited
+[Explain who is being invited and why you were chosen.]
+
+3. What taking part involves
+[Describe the tasks, how long it takes, where, and whether audio, video or screen recording is used.]
+
+4. Taking part is voluntary
+Participation is voluntary. You may refuse to answer any question and may withdraw at any time without penalty. [State until when your data can still be removed.]
+
+5. Possible risks and discomfort
+[Describe any risks or discomfort and how you will reduce them.]
+
+6. Possible benefits
+[Describe benefits to participants or to others. Do not promise rewards that you cannot give.]
+
+7. Confidentiality and data protection
+[State what data is collected, whether it is anonymous, where it is stored, who can access it, how long it is kept and how it will be destroyed.]
+
+8. Use of results
+[Explain that the results will be used for the capstone project report and how any quotes will be anonymised.]
+
+9. Questions or concerns
+Researcher: [contact]. Supervisor: [contact]. Ethics committee: [contact details from your university].
+
+Please keep this sheet for your records.`);
+$("#d2").onclick=()=>dlTxt("informed-consent-form.txt",`INFORMED CONSENT FORM
+Project title: [title]
+Researcher: [name]   Supervisor: [name]
+
+Please tick each box:
+[ ] I have read and understood the Participant Information Sheet.
+[ ] I have had the chance to ask questions and my questions were answered.
+[ ] I understand that taking part is voluntary and that I may withdraw at any time without penalty.
+[ ] I understand how my data will be stored, used and protected, and that my identity will not be revealed in any report.
+[ ] I agree to be [audio recorded / video recorded / screen recorded]. (Delete if not used.)
+[ ] I agree to take part in this study.
+
+Participant name: ______________________   Signature: ______________   Date: __________
+Researcher name: ______________________   Signature: ______________   Date: __________
+
+For online surveys: show the information sheet on the first page and add the question
+"I have read the information and agree to take part. (Yes / No)". The survey ends if the answer is No.`);
+$("#d3").onclick=()=>dlTxt("data-management-checklist.txt",`DATA MANAGEMENT CHECKLIST
+1. What data will I collect? [list each item]
+2. Does it identify people? [yes/no, which fields]
+3. Can I collect less? [remove any data I do not need]
+4. How will I anonymise it? [codes, removing names]
+5. Where will it be stored? [secure location, password or encryption]
+6. Who can access it? [researcher, supervisor only]
+7. How long will I keep it? [period]
+8. How will I delete it? [method and date]
+9. Will I share it or publish quotes? [how it stays anonymous]
+10. What if there is a data breach or a participant withdraws? [steps]`);
+
+const G2=[["CP1 · Supervisor and SAF",1,5],["CP1 · Literature collection and synthesis",4,9],["CP1 · Ethics application (if needed)",5,8],["CP1 · Proposal Chapters 1–4 and Gantt",5,13],["CP1 · Logbook",3,14],["CP1 · Submit proposal and logbook",14,14,1],["CP2 · Final requirements and design",15,18],["CP2 · Data collection and preprocessing",16,20],["CP2 · Model training and evaluation",19,23],["CP2 · System development",18,24],["CP2 · Integration and testing",23,25],["CP2 · User testing and evaluation",25,27],["CP2 · Final report, demo, presentation",26,28],["CP2 · Final submission",28,28,1]];
+let h2='<div class="h" style="text-align:left"></div><div class="h" style="grid-column:span 14;font-weight:700">CP1</div><div class="h" style="grid-column:span 14;font-weight:700">CP2</div><div class="h" style="text-align:left">Task</div>'+Array.from({length:28},(_,i)=>`<div class="h">${i%14+1}</div>`).join("");
+for(const[t,a,b,m]of G2){h2+=`<div class="n">${esc(t)}</div>`+Array.from({length:28},(_,i)=>{const w=i+1;return`<div class="c">${w>=a&&w<=b?`<div class="b ${m?"m":""}"></div>`:""}</div>`}).join("")}
+$("#gc2").innerHTML=h2;
+
+const TOC=`TABLE OF CONTENTS
+Abstract
+List of Figures
+List of Tables
+
+Chapter 1  Introduction
+  1.1  Background
+  1.2  Problem Statement
+  1.3  Aim and Objectives
+  1.4  Research Questions (if required)
+  1.5  Scope and Limitations
+  1.6  Significance of the Study
+  1.7  Report Organisation
+
+Chapter 2  Literature Review
+  2.1  Introduction and Search Strategy
+  2.2  Background of [Topic]
+  2.3  Causes and Implications of [Problem]
+  2.4  Conventional Approaches
+  2.5  Digital, Smart and AI-based Solutions
+  2.6  Critical Analysis and Comparison of Existing Solutions
+  2.7  Research Gaps
+  2.8  Link to the Proposed Project and Chapter Summary
+
+Chapter 3  Methodology
+  3.1  Research Design and Approach
+  3.2  Project Framework
+  3.3  Requirements Gathering (User Survey)
+  3.4  System Analysis and Design (Use Case Diagram, Architecture, UI)
+  3.5  AI Model: Data Collection
+  3.6  AI Model: Preprocessing
+  3.7  AI Model: Development and Evaluation
+  3.8  AI Model: Integration into the System
+  3.9  System Testing and User Testing
+  3.10 Tools, Technologies and Ethical Considerations
+
+Chapter 4  Work Plan
+  4.1  CP1 Work Plan
+  4.2  CP2 Work Plan
+  4.3  Gantt Chart for CP1 and CP2
+  4.4  Resources
+  4.5  Risk Analysis
+  4.6  Expected Deliverables
+
+References
+
+Appendices
+  Appendix A  Survey Questionnaire
+  Appendix B  Participant Information Sheet and Consent Form
+  Appendix C  Ethics Approval`;
+$("#tocp").textContent=TOC;
+$("#tcp").onclick=async()=>{try{await navigator.clipboard.writeText(TOC);$("#tcp").textContent="✓ Copied"}catch(e){prompt("Copy:",TOC)}setTimeout(()=>$("#tcp").textContent="📋 Copy",1500)};
+$("#tdl").onclick=()=>dlTxt("table-of-contents.txt",TOC);
+</script>
+</body></html>
